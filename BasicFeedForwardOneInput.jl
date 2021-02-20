@@ -6,9 +6,9 @@ function generateData(data=100)
     for steps in 0:data
         value = steps/20
         push!(x1, value)
-        push!(y1, sin(value))
+        push!(y1, tan(value))
     end
-    return standardize(UnitRangeTransform, x1),standardize(UnitRangeTransform, y1)
+    return standardize(UnitRangeTransform, x1),y1
 end
 
 function train(epochs, model, data)
@@ -24,7 +24,7 @@ model = Chain(Dense(1,25,relu),
 
 Loss(x,y) = Flux.mse(model([x]), y) 
 
-train(1000, model, data)
+train(10000, model, data)
 
 #Below is all for plotting
 
@@ -41,3 +41,7 @@ println("Did it go better this time?")
 #println(sin(pi/8))
 #println(model([pi/8]))
 #Loss(pi/8,sin(pi/8))
+
+
+
+
